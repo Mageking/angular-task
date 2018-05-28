@@ -5,13 +5,17 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService,
+              private router: Router,
+              private storage: StorageService
+  ) {}
 
   canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const redirectUrl: string = state.url;
@@ -19,7 +23,7 @@ export class AuthGuardService implements CanActivate {
   }
 
   checkLogin(url: string): boolean {
-    if (this.authService.isLoggedIn) { return true; }
+    if (this.storage.read('token')) { return true; }
     this.authService.redirectUrl = url;
     this.router.navigate(['/login']);
     return false;
