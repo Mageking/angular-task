@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import {validate} from 'codelyzer/walkerFactory/walkerFn';
 
 @Component({
   selector: 'app-login',
@@ -31,26 +32,32 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit() {
-    const {
-      password,
-      username
-    } = this.form.value;
 
-    if (!this.form.get('username').valid || !this.form.get('password').valid) {
-      this.form.get('username').markAsTouched();
-      this.form.get('password').markAsTouched();
-      return;
+    let formValid = true;
+
+    // check fields are valid
+    for (const key of Object.keys(this.form.controls)) {
+      this.form.get(key).markAsTouched();
+      if (!this.form.get(key).valid) {
+        formValid = false;
+      }
     }
 
-    this.loading = true;
+    if (formValid) {
+      const {
+        password,
+        username
+      } = this.form.value;
+      this.loading = true;
 
-    try {
-      await this.authService.login(username, password);
-      this.loading = false;
-      this.router.navigate(['/dashboard']);
-    } catch (err) {
-      this.loading = false;
-      this.submitError = true;
+      try {
+        await this.authService.login(username, password);
+        this.loading = false;
+        this.router.navigate(['/dashboard']);
+      } catch (err) {
+        this.loading = false;
+        this.submitError = true;
+      }
     }
   }
 }
