@@ -11,6 +11,10 @@
   margin-bottom: 10px;
 }
 
+.login__form {
+  width: 300px;
+}
+
 .login__form-holder{
   display: flex;
   height: 100%;

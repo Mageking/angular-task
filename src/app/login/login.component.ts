@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   isFieldValid(field: string) {
-    return !this.form.get(field).valid && (this.form.get(field).touched || this.submitError);
+    return !this.form.get(field).valid && (this.form.get(field).touched);
   }
 
   async onSubmit() {
@@ -35,6 +35,12 @@ export class LoginComponent implements OnInit {
       password,
       username
     } = this.form.value;
+
+    if (!this.form.get('username').valid || !this.form.get('password').valid) {
+      this.form.get('username').markAsTouched();
+      this.form.get('password').markAsTouched();
+      return;
+    }
 
     this.loading = true;
 
