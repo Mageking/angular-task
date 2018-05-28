@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth/auth.service';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   submitError = false;
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,12 +36,14 @@ export class LoginComponent implements OnInit {
       username
     } = this.form.value;
 
-    // @todo show loading gif or something
+    this.loading = true;
 
     try {
       await this.authService.login(username, password);
+      this.loading = false;
       this.router.navigate(['/dashboard']);
     } catch (err) {
+      this.loading = false;
       this.submitError = true;
     }
   }

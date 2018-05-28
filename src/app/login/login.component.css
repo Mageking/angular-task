@@ -17,3 +17,20 @@
   justify-content: center;
   align-items: center;
 }
+
+.login__loading-panel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_loading-panel-background{
+  background: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
