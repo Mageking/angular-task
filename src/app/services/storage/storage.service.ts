@@ -17,4 +17,8 @@ export class StorageService {
   read(key): string {
     return this.storage.getItem(key);
   }
+
+  remove(key): string {
+    return this.storage.clear();
+  }
 }

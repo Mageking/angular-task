@@ -6,7 +6,7 @@
     <nav class="header__nav">
       <a class="header__nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <a class="header__nav-link" routerLink="/bitcoin-history" routerLinkActive="active">Bitcoin History</a>
-      <a class="header__nav-link" routerLink="/logout" routerLinkActive="active">Logout</a>
+      <a (click)="logout()" class="header__nav-link">Logout</a>
     </nav>
   </div>
 </div>

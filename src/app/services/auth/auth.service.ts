@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from '../storage/storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class AuthService {
   isLoggedIn: Boolean = false;
   redirectUrl: string;
 
-  constructor(private storage: StorageService) {}
+  constructor(private storage: StorageService, private router: Router) {}
 
   login(username, password): Promise<object> {
     return new Promise((res, rej) => {
@@ -23,6 +24,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.isLoggedIn = false;
+    this.storage.remove('token');
+    this.router.navigate(['login']);
   }
 }
