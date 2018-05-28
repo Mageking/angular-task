@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  submitError = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,6 +25,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  isFieldValid(field: string) {
+    return !this.form.get(field).valid && (this.form.get(field).touched || this.submitError);
+  }
+
   async onSubmit() {
     const {
       password,
@@ -36,7 +41,7 @@ export class LoginComponent implements OnInit {
       await this.authService.login(username, password);
       this.router.navigate(['/dashboard']);
     } catch (err) {
-      // @todo show error
+      this.submitError = true;
     }
   }
 }

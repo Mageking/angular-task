@@ -1,22 +1,30 @@
-<div class="container">
-  <div class="row">
-    <form [formGroup]="form">
-      <div class="six columns">
-        <label for="username">Username</label>
-        <input
-          formControlName="username"
-          id="username"
-          name="username"
-          class="u-full-width"
-          type="text">
-        <label for="password">Password</label>
-        <input
-          formControlName="password"
-          id="password"
-          class="u-full-width"
-          type="password">
-        <button (click)="onSubmit()" [disabled]="!form.valid" class="u-full-width button-primary">Login</button>
+<div class="login">
+  <div class="login__form-holder">
+    <form [formGroup]="form" class="login__form">
+      <div *ngIf="submitError" class="login__error-box">
+        No match found for this username and password
       </div>
+      <label for="username">Username</label>
+      <input
+        formControlName="username"
+        id="username"
+        name="username"
+        class="u-full-width"
+        type="text">
+      <app-field-error-display
+        [displayError]="isFieldValid('username')"
+        errorMsg="Username is Required">
+      </app-field-error-display>
+      <label for="password">Password</label>
+      <input
+        formControlName="password"
+        id="password"
+        class="u-full-width"
+        type="password">
+      <app-field-error-display
+        [displayError]="isFieldValid('password')"
+        errorMsg="Password is required">
+      </app-field-error-display>
+      <button (click)="onSubmit()" class="u-full-width button-primary">Login</button>
     </form>
-  </div>
 </div>

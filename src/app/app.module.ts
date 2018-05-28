@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { BitCoinHistoryComponent } from './bit-coin-history/bit-coin-history.component';
 import { HeaderComponent } from './header/header.component';
+import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HeaderComponent } from './header/header.component';
     DashboardComponent,
     AppLayoutComponent,
     BitCoinHistoryComponent,
-    HeaderComponent
+    HeaderComponent,
+    FieldErrorDisplayComponent
   ],
   imports: [
     BrowserModule,
