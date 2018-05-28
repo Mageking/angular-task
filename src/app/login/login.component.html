@@ -1,8 +1,5 @@
 <div class="login">
-  <div *ngIf="loading" class="login__loading-panel">
-    <div class="login_loading-panel-background"></div>
-    <div class="loader"></div>
-  </div>
+  <app-loader *ngIf="loading"></app-loader>
   <div class="login__form-holder">
     <form [formGroup]="form" class="login__form">
       <div *ngIf="submitError" class="login__error-box">
