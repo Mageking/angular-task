@@ -8,6 +8,7 @@ import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
+import { BitCoinHistoryComponent } from './bit-coin-history/bit-coin-history.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'bitcoin-history',
+        component: BitCoinHistoryComponent
       }
     ]
   }
