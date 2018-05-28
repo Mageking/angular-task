@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { BitCoinHistoryComponent } from './bit-coin-history/bit-coin-history.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BitCoinHistoryComponent } from './bit-coin-history/bit-coin-history.com
     LoginComponent,
     DashboardComponent,
     AppLayoutComponent,
-    BitCoinHistoryComponent
+    BitCoinHistoryComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
