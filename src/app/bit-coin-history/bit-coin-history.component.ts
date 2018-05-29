@@ -10,36 +10,43 @@ import { Chart } from 'angular-highcharts';
 export class BitCoinHistoryComponent implements OnInit {
 
   chart: Chart;
+  loading: boolean;
 
   constructor(private coinDesk: CoinDeskService) { }
 
   ngOnInit() {
-    this.coinDesk.getHistory()
-      .subscribe((res: any) => {
-        const data: any = Object.keys(res.bpi)
-          .map((key) => {
-            return [new Date(key), res.bpi[key]];
+    this.loading = true;
+    // using a timeout to throttle request
+    setTimeout(() => {
+      this.coinDesk.getHistory()
+        .subscribe((res: any) => {
+          const data: any = Object.keys(res.bpi)
+            .map((key) => {
+              return [new Date(key), res.bpi[key]];
+            });
+
+          this.chart = new Chart({
+            chart: {
+              type: 'line'
+            },
+            title: {
+              text: 'Bitcoin Index'
+            },
+            xAxis: {
+              type: 'datetime'
+            },
+            credits: {
+              enabled: false
+            },
+            series: [{
+              name: 'Line 1',
+              data: data
+            }]
           });
 
-        this.chart = new Chart({
-          chart: {
-            type: 'line'
-          },
-          title: {
-            text: 'Linechart'
-          },
-          xAxis: {
-            type: 'datetime'
-          },
-          credits: {
-            enabled: false
-          },
-          series: [{
-            name: 'Line 1',
-            data: data
-          }]
+          this.loading = false;
         });
-      });
+    }, 2000);
   }
 
 }
