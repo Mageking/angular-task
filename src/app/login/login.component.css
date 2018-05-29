@@ -38,3 +38,15 @@
   height: 100%;
   opacity: 0.8;
 }
+
+.login__button {
+  background: black;
+  color: yellow;
+  border-color: #424242;
+}
+
+.login__button:hover {
+  background: #424242;
+  color: yellow;
+  border-color: #424242;
+}
